@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comentarios - Mundo Bella</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    body {
+      background-color: #ffeef8;
+      color: #444;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 20px; /* Esto crea el margen rosa en el cuerpo */
+      border: 5px solid #f3a7d5; /* Margen rosa */
+      border-radius: 10px; /* Si deseas bordes redondeados */
+    }
+
+    header {
+      background-color: #f8cde9;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-bottom: 2px solid #f3a7d5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin: 0 10px; /* Margen rosa alrededor del header */
+      border: 3px solid #f3a7d5; /* Borde rosa */
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #7e145e;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #7e145e;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #fdd6ec;
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(126,20,94,0.1);
+      padding: 2rem;
+      margin: 20px; /* Añadimos margen rosa alrededor del contenido principal */
+      border: 3px solid #f3a7d5; /* Borde rosa */
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #a4367e;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: #f3a7d5;
+      margin: 6px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      font-weight: 700;
+      color: #7e145e;
+      font-size: 1.1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    select {
+      padding: 0.6rem;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      max-width: 150px;
+    }
+
+    button[type="submit"] {
+      width: max-content;
+      background-color: #7e145e;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #a4367e;
+    }
+
+    #lista-comentarios {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .comentario {
+      background: #f8cde9;
+      border-radius: 15px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(126,20,94,0.1);
+      position: relative;
+    }
+
+    .comentario strong {
+      color: #7e145e;
+      font-size: 1.1rem;
+    }
+
+    .comentario button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #a4367e;
+      border: none;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .comentario button:hover {
+      background-color: #7e145e;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      #lista-comentarios {
+        max-height: 300px;
+      }
+    }
+
+    /* Personalización de la barra de desplazamiento */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f3a7d5;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #7e145e;
+      border-radius: 10px;
+      border: 3px solid #f3a7d5;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a4367e;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+     <img src="eslogan-OPINIONES.jpg" alt="Bienvenidos" style="width: 100%; height: auto;">
+    <h1>𝑀𝒰𝒩𝒟𝒪 𝐵𝐸𝐿𝐿𝒜</h1>
+    <nav>
+      <ul>
+        <li><a href="PRIMERA PAGINA.html">Nosotras</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="comentarios.html" aria-current="page">Comentarios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Comentarios y Calificaciones</h2>
+
+    <form id="formulario-comentarios">
+      <label for="calificacion">Calificación:</label>
+      <select id="calificacion" required>
+        <option value="" disabled selected>Seleccione...</option>
+        <option value="⭐">⭐</option>
+        <option value="⭐⭐">⭐⭐</option>
+        <option value="⭐⭐⭐">⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <label for="comentario">Comentario:</label>
+      <textarea id="comentario" placeholder="Escribe tu opinión aquí..." required></textarea>
+
+      <button type="submit">Enviar Comentario</button>
+    </form>
+
+    <section id="lista-comentarios" aria-live="polite" aria-relevant="additions removals">
+      <!-- Comentarios aparecerán aquí -->
+    </section>
+  </main>
+
+  <footer>
+    <p style="text-align:center; color:#7e145e; font-weight:600; margin-top: 0.8rem;">&copy; 2025 𝑀𝒰𝒩𝒟𝒪 𝐵𝐸𝐿𝐿𝒜</p>
+  </footer>
+
+  <script>
+    const formulario = document.getElementById("formulario-comentarios");
+    const listaComentarios = document.getElementById("lista-comentarios");
+
+    const palabrasProhibidas = ["feo", "malo", "horrible", "asco", "basura", "asqueroso", "terrible", "peor", "odioso", "repugnante", "epugnante", "culero", "mierda", "producto chafa", "hijo de su puta madre", "vallanse alv", "ala verga", "PRODUCTO MIERDA", "SAPA HIJO DE PUTA", "vallanse a la chingada", "pesima calidad no lo recomiendo", "no sirve", "guacala"];
+    function contienePalabrasProhibidas(texto) {
+      const textoLimpio = texto.toLowerCase();
+      return palabrasProhibidas.some(palabra => textoLimpio.includes(palabra));
+    }
+
+    function cargarComentarios() {
+      const comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+      listaComentarios.innerHTML = "";
+
+      comentarios.forEach((c, index) => {
+        const div = document.createElement("div");
+        div.classList.add("comentario");
+        div.innerHTML = ` 
+          <strong>${c.calificacion}</strong> — ${c.texto}
+          <button aria-label="Eliminar comentario ${index + 1}" onclick="eliminarComentario(${index})">Eliminar</button>
+        `;
+        listaComentarios.appendChild(div);
+      });
+    }
+
+    formulario.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const texto = document.getElementById("comentario").value.trim();
+      const calificacion = document.getElementById("calificacion").value;
+
+      if (!texto || !calificacion) return;
+
+      if (contienePalabrasProhibidas(texto)) {
+        alert("Tu comentario contiene palabras inapropiadas y no será publicado.");
+        return;
+      }
+
+      const nuevoComentario = { texto, calificacion };
+      const comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+      comentarios.push(nuevoComentario);
+      localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+      document.getElementById("comentario").value = "";
+      document.getElementById("calificacion").value = "";
+
+      cargarComentarios();
+    });
+
+    function eliminarComentario(index) {
+      const clave = prompt("Para eliminar este comentario escribe la contraseña:");
+      if (clave === "NO ME GUSTÓ") {
+        const comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+        comentarios.splice(index, 1);
+        localStorage.setItem("comentarios", JSON.stringify(comentarios));
+        cargarComentarios();
+      } else {
+        alert("Contraseña incorrecta. No se eliminó el comentario.");
+      }
+    }
+
+    window.onload = cargarComentarios;
+  </script>
+</body>
+</html>
+

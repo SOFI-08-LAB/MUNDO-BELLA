@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    body {
+      background-color: #fff1f9;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #f8cde9;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-bottom: 2px solid #f3a7d5;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #7e145e;
+      margin-bottom: 0.5rem;
+      font-family: 'Great Vibes', cursive;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #7e145e;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #fdd6ec;
+    }
+
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #a4367e;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Slider CSS */
+    .slider {
+      position: relative;
+      max-width: 700px;
+      margin: 2rem auto 3rem auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 300%;
+    }
+
+    .slide {
+      min-width: 100%;
+      user-select: none;
+    }
+
+    .slide img {
+      width: 100%;
+      display: block;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+
+    .slider-buttons button {
+      background: rgba(126, 20, 94, 0.7);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      line-height: 1;
+    }
+
+    .slider-buttons button:hover {
+      background: #a4367e;
+    }
+
+    /* Productos */
+    .producto-lista {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .producto {
+      background: #ffffff;
+      padding: 2rem; /* Aumenté el padding */
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      width: 300px; /* Aumenté el ancho de los recuadros */
+      text-align: center;
+      margin: 1rem; /* Aquí agregamos el margen rosa alrededor del recuadro */
+      border: 2px solid #f3a7d5; /* Borde rosa alrededor del producto */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .producto h3 {
+      color: #a4367e;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .producto p.precio {
+      font-weight: bold;
+      color: #7e145e;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .producto .descripcion {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 0.3rem;
+    }
+
+    /* Beneficios iconos */
+    .beneficios {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.3rem;
+      color: #a4367e;
+    }
+
+    .beneficios span {
+      background: #f8cde9;
+      padding: 0.3rem 0.7rem;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      cursor: default;
+      user-select: none;
+      transition: background 0.3s;
+    }
+
+    .beneficios span:hover {
+      background: #fdd6ec;
+    }
+
+    footer {
+      background-color: #f8cde9;
+      color: #7e145e;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      border-top: 2px solid #f3a7d5;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .producto {
+        width: 100%;
+      }
+      .slider {
+        max-width: 100%;
+      }
+    }
+
+    /* Personalización de la barra de desplazamiento */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f3a7d5;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #7e145e;
+      border-radius: 10px;
+      border: 3px solid #f3a7d5;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a4367e;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+     <img src="eslogan-PRODUCTOS.jpg" alt="Bienvenidos" style="width: 100%; height: auto;">
+    <h1>MUNDO BELLA</h1>
+    <nav>
+      <ul>
+        <li><a href="PRIMERA PAGINA.html">Nosotras</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="conctato.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="comentarios.html">Comentarios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="productos">
+    <!-- Texto introductorio -->
+    <p style="text-align:center; max-width:600px; margin: 0 auto 2rem auto; color:#6a3a69; font-style: italic; font-size:1.1rem;">
+      Descubre la belleza natural con nuestros productos diseñados para cuidar y realzar tu belleza única.
+    </p>
+    <h2>Nuestros Productos</h2>
+
+    <div class="producto-lista">
+      <div class="producto">
+        <h3>𝑩𝒂𝒍𝒔𝒂𝒎𝒐 𝒍𝒂𝒃𝒊𝒂𝒍</h3>
+        <p class="descripcion">Nuestro bálsamo labial ofrece hidratación instantánea y protección duradera. Con ingredientes naturales como manteca de karité y aceite de coco, mantiene tus labios suaves, nutridos y libres de resequedad.</p>
+
+        <p> de uso: Aplica una capa sobre los labios tantas veces como lo necesites.</p>
+
+        <p>y embellece tus labios con el poder de la naturaleza.</p>
+
+        <div class="beneficios" aria-label="Beneficios del labial">
+        </div>
+        <p class="precio">$30 MXN</p>
+      </div>
+      <div class="producto">
+        <h3>Aceite de Aguacate</h3>
+        <p class="descripcion">El aceite de aguacate es ideal para hidratar, fortalecer y restaurar el brillo del cabello. Rico en vitamina E y ácidos grasos omega-3, nutre profundamente, combate el frizz y promueve el crecimiento saludable. Perfecto para cabellos secos, dañados o rizados.</p>
+
+        <p>Modo de uso: Aplica unas gotas en el cuero cabelludo y puntas. Deja actuar por 30 minutos o toda la noche, y enjuaga.</p>
+
+        <p>Disfruta de un cabello más suave, brillante y saludable.</p>
+
+        <div class="beneficios" aria-label="Beneficios del aceite de coco">
+        </div>
+        <p class="precio">$130 MXN</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mundo Bella</p>
+  </footer>
+
+  <script>
+    // Slider funcionalidad básica
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    let index = 0;
+
+    document.getElementById('next').addEventListener('click', () => {
+      index = (index + 1) % totalSlides;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+      index = (index - 1 + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    });
+  </script>
+</body>
+</html>

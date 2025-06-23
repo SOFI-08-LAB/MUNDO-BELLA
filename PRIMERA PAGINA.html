@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotras</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    body {
+      background-color: #ffeef8;
+      color: #444;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #f8cde9;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-bottom: 2px solid #f3a7d5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #7e145e;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #7e145e;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #fdd6ec;
+    }
+
+    .banner {
+      width: 100%;
+      height: 300px;
+      background-image: url('banner.jpg');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 2rem;
+    }
+
+    section.contenido {
+      padding: 3rem 1.5rem;
+      max-width: 900px;
+      margin: 2rem auto 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(126,20,94,0.1);
+      border: 3px solid #f3a7d5;
+    }
+
+    section.contenido.visible {
+      opacity: 1;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section.contenido img {
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(126,20,94,0.3);
+      flex-shrink: 0;
+      transition: transform 0.4s ease;
+      cursor: default;
+    }
+
+    section.contenido img:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    section.contenido div.texto {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #a4367e;
+      text-align: left;
+      margin-bottom: 0.5rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: #f3a7d5;
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      text-align: justify;
+      margin-top: 1rem;
+      line-height: 1.8;
+    }
+
+    p span.destacado {
+      color: #7e145e;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background-color: #7e145e;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-cta:hover {
+      background-color: #a4367e;
+    }
+
+    section.valores {
+      max-width: 900px;
+      margin: 3rem auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    section.valores div {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 6px 15px rgba(126,20,94,0.1);
+      transition: transform 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+      margin: 10px;
+      border: 3px solid #f3a7d5;
+    }
+
+    section.valores div:hover {
+      transform: translateY(-6px);
+    }
+
+    section.valores img {
+      width: 50px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 1px 1px rgba(126,20,94,0.3));
+    }
+
+    section.valores h3 {
+      color: #7e145e;
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    section.valores p {
+      font-size: 1rem;
+      color: #555;
+      text-align: justify;
+    }
+
+    section.proposito,
+    section.vision-mision {
+      max-width: 800px;
+      margin: 2rem auto 3rem;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(126,20,94,0.1);
+      border: 3px solid #f3a7d5;
+    }
+
+    section.proposito h2,
+    section.vision-mision h2 {
+      text-align: center;
+    }
+
+    section.proposito p,
+    section.vision-mision p {
+      font-size: 1.1rem;
+      text-align: justify;
+      color: #555;
+    }
+
+    footer {
+      background-color: #f8cde9;
+      color: #7e145e;
+      text-align: center;
+      padding: 1rem 1rem 0.5rem;
+      border-top: 2px solid #f3a7d5;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    footer p {
+      margin-bottom: 0.8rem;
+    }
+
+    footer .redes {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+    }
+
+    footer .redes a {
+      color: #7e145e;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    footer .redes a:hover {
+      color: #a4367e;
+      text-decoration: underline;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f3a7d5;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #7e145e;
+      border-radius: 10px;
+      border: 3px solid #f3a7d5;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a4367e;
+    }
+
+    @media (max-width: 700px) {
+      section.contenido {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav a {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="eslogan-nosotros.jpg" alt="Descripción de la imagen" style="width: 100%; height: auto;">
+
+  <header>
+    <h1>MUNDO BELLA</h1>
+    <nav>
+      <ul>
+        <li><a href="PRIMERA PAGINA.html">Nosotras</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="conctato.html">Contacto</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="comentarios.html">Comentarios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contenido">
+    <img src="logo-2.jpg" alt="Nuestra Historia">
+    <div class="texto">
+      <h2>Nuestra Historia</h2>
+      <p>Nos dedicamos a crear productos naturales, orgánicos y llenos de amor. Con el tiempo, nuestra pasión nos ha llevado a evolucionar y ser un referente en el mercado.</p>
+    </div>
+  </section>
+
+  <section class="proposito" id="proposito">
+    <h2>Propósito</h2>
+    <p>Nos esforzamos por crear productos que hagan la diferencia en la vida de nuestras clientes, basados en principios de honestidad, respeto y compromiso con el medio ambiente.</p>
+  </section>
+
+  <section class="vision-mision" id="vision-mision">
+    <h2>Visión y Misión</h2>
+    <p><span class="destacado">Visión:</span> Ser la marca líder en productos naturales y orgánicos, reconocida por su calidad e innovación.</p>
+    <p><span class="destacado">Misión:</span> Ofrecer productos que respeten el bienestar de las personas y el planeta, creando un impacto positivo a través de cada uno de ellos.</p>
+  </section>
+
+  <section class="valores">
+    <div>
+      <img src="AGUACATE.jpg" alt="Descripción de la imagen" style="width: 350px; height: 250px;">
+      <h3>Natural</h3>
+      <p>Ingredientes 100% naturales y orgánicos.</p>
+    </div>
+    <div>
+      <img src="FOTO PRODUCTOS.jpeg" alt="Descripción de la imagen" style="width: 350px; height: 240px;">
+      <h3>Pasión</h3>
+      <p>Amor y dedicación en cada producto.</p>
+    </div>
+    <div>
+      <img src="SATISFACCION.png" alt="Descripción de la imagen" style="width: 800px; height: 350px;">
+      <h3>Confianza</h3>
+      <p>Comprometidos con tu bienestar y satisfacción.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mundo Bella</p>
+  </footer>
+</body>
+</html>
